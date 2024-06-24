@@ -1,7 +1,8 @@
 const express = require("express");
-const cors = require('cors');
+
 
 require("./db/mongoose.js");
+const userRouter = require('./routes/user-routers'); 
 
 
 const app = express();
@@ -18,10 +19,11 @@ app.use((req, res, next) => {
 });
 
 app.use(express.json());
+app.use(userRouter);
 
 
 const port = process.env.PORT || 8000;
-app.use(cors());
+
 
 app.listen(port, () => {
     console.log(`Backend running on port ${port}`);
